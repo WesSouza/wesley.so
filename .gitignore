@@ -8,3 +8,7 @@ public
 # Node
 node_modules
 *.log*
+
+# Env
+.env
+.env.build

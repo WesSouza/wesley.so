@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "jsx": "react",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./public",
+    "paths": {
+      "~/*": [
+        "./*"
+      ]
+    },
+    "preserveSymlinks": true,
+    "resolveJsonModule": true,
+    "rootDir": "./",
+    "sourceMap": true,
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "es2017"
+  },
+  "include": [
+    "api",
+    "scripts",
+    "src",
+    "test",
+    "twitter-lite.d.ts"
+  ],
+  "exclude": [
+    ".cache",
+    "coverage",
+    "dist",
+    "node_modules",
+  ]
+}

@@ -1,5 +1,9 @@
 {
   "version": 2,
+  "build": {
+    "env": {}
+  },
+  "env": {},
   "routes": [
     {
       "src": "/go/components-talk",
