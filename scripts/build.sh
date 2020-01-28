@@ -6,5 +6,3 @@ mkdir -p ./public
 cp ./src/LICENSE.txt ./public/LICENSE.txt
 cp ./src/resume.html ./public/resume.html
 cp -a ./archive ./public
-
-parcel build ./src/index.html  --dist-dir ./public
