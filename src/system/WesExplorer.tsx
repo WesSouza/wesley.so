@@ -1,60 +1,77 @@
-import React from 'react';
+import React, { PointerEvent, useCallback, useEffect, useRef } from 'react';
 
-import { Button, Desktop, Window, Icon } from '~/components';
-import { Icons } from '~/constants/Icons';
-import { PaddingValues } from '~/constants/Styles';
-import { HStack, Themes, VStack } from '~/ui';
+import { IconGrid } from '~/src/components/IconGrid';
+import { Colors, ZIndexes } from '~/src/constants/Styles';
+import { useHostSize } from '~/src/hooks/useHostSize';
+import { useSelector } from '~/src/hooks/useSelector';
+import {
+  windowFocus,
+  windowGetAll,
+  windowGetFocusedId,
+  windowSetDesktopSize,
+  windowStore,
+} from '~/src/state';
+import { HorizontalAlignments, VStack } from '~/src/ui';
+import { getBoundingClientRect } from '~/src/utils/dom';
 
-function noop() {}
+import { ApplicationWindow } from './ApplicationWindow';
+import { Taskbar } from './Taskbar';
+import { WindowTitleAnimation } from './WindowTitleAnimation';
 
 export function WesExplorer() {
+  const focusedId = useSelector(windowStore, windowGetFocusedId);
+  const desktop = useRef<HTMLDivElement>(null);
+  const windows = useSelector(windowStore, windowGetAll);
+
+  const size = useHostSize();
+  useEffect(() => {
+    if (!desktop.current) {
+      windowSetDesktopSize(size);
+      return;
+    }
+
+    const desktopSize = getBoundingClientRect(desktop.current);
+    windowSetDesktopSize(desktopSize);
+  }, [size]);
+
+  const focused = focusedId === null;
+  const handleFocus = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      if (event.target === event.currentTarget && !focused) {
+        windowFocus(null);
+      }
+    },
+    [focused],
+  );
+
+  const windowComponents: JSX.Element[] = [];
+  windows.forEach((window) => {
+    windowComponents.push(<ApplicationWindow id={window.id} key={window.id} />);
+  });
+
   return (
     <>
-      <Desktop>
-        <Window
-          active={true}
-          meta={{
-            title: 'Test',
-            icon: Icons.fileTypeText,
-            maximized: false,
-            minimizable: true,
-            minimized: false,
-            resizable: true,
-            position: [10, 10],
-            size: [300, 200],
-          }}
-          onClose={noop}
-          onFocus={noop}
+      <VStack
+        alignment={HorizontalAlignments.stretch}
+        backgroundColor={Colors.teal}
+        grow={1}
+      >
+        <VStack
+          nativeRef={desktop}
+          alignment={HorizontalAlignments.stretch}
+          grow={1}
+          UNSTABLE_css={{ position: 'relative' }}
+          UNSTABLE_onPressDown={handleFocus}
+          zIndex={ZIndexes.desktop}
         >
-          <VStack grow={1} padding={PaddingValues.medium} theme={Themes.frame}>
-            Text content
-          </VStack>
-          <VStack grow={2} padding={PaddingValues.medium} theme={Themes.frame}>
-            Text content
-          </VStack>
-        </Window>
-        <Window
-          active={false}
-          meta={{
-            title: 'Test',
-            icon: null,
-            maximized: false,
-            minimizable: true,
-            minimized: false,
-            resizable: true,
-            position: [10, 240],
-            size: [300, 200],
-          }}
-          onClose={noop}
-          onFocus={noop}
-        >
-          <HStack padding={PaddingValues.large}>
-            <Button>OK</Button>
-            <Button>OK</Button>
-            <Button>OK</Button>
-          </HStack>
-        </Window>
-      </Desktop>
+          <IconGrid foregroundColor={Colors.white} />
+          {windowComponents}
+        </VStack>
+        <Taskbar />
+      </VStack>
+      <WindowTitleAnimation />
     </>
   );
 }
+
+WesExplorer.whyDidYouRender = true;
