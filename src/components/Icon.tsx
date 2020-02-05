@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Icons, IconSizes, IconSrcs } from '~/constants/Icons';
-import { Scale } from '~/constants/Styles';
-import { Image, ViewLayoutProps } from '~/ui';
+import { Icons, IconSizes, IconSrcs } from '~/src/constants/Icons';
+import { Scale } from '~/src/constants/Styles';
+import { Image, ViewLayoutProps } from '~/src/ui';
 
 const SizeMap = {
   [IconSizes.large]: 32 * Scale,
@@ -18,9 +18,10 @@ export function Icon({ icon, size, ...props }: Props) {
   const widthHeight = SizeMap[size];
   return (
     <Image
-      src={IconSrcs[icon][size]}
-      width={widthHeight}
       height={widthHeight}
+      width={widthHeight}
+      shrink={0}
+      src={IconSrcs[icon][size]}
       {...props}
     />
   );
