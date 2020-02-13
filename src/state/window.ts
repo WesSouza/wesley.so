@@ -14,6 +14,8 @@ import { panic } from '~/src/utils/errors';
 import { StateManager } from '~/src/utils/StateManager';
 import { WesURL } from '~/src/utils/WesURL';
 
+import { modalWindowClosed } from './modal';
+
 let i = 1;
 function uuid() {
   return String(i++);
@@ -103,7 +105,7 @@ export function windowClose(id: string) {
   const { all } = windowStore.state;
   const window = all.get(id);
   if (!window) {
-    throw new Error(`Window ${id} does not exist`);
+    return;
   }
 
   windowStore.mutate((state) => {
@@ -119,6 +121,10 @@ export function windowClose(id: string) {
 
     state.lastZIndex = windowGetPenultimateZIndexNonMinimizedId(state);
   });
+
+  if (window.app === Apps.modal) {
+    modalWindowClosed(window.id);
+  }
 }
 
 export function windowConfigure(id: string, options: WindowOptions) {
