@@ -1,9 +1,17 @@
 {
   "version": 2,
   "build": {
-    "env": {}
+    "env": {
+      "IG_USERNAME": "@ig_username",
+      "IG_PASSWORD": "@ig_password",
+      "IG_WES_USERNAME": "wes.gif"
+    }
   },
-  "env": {},
+  "env": {
+    "IG_USERNAME": "@ig_username",
+    "IG_PASSWORD": "@ig_password",
+    "IG_WES_USERNAME": "wes.gif"
+  },
   "routes": [
     {
       "src": "/go/components-talk",
