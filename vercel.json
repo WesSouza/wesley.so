@@ -4,13 +4,23 @@
     "env": {
       "IG_USERNAME": "@ig_username",
       "IG_PASSWORD": "@ig_password",
-      "IG_WES_USERNAME": "wes.gif"
+      "IG_WES_USERNAME": "wes.gif",
+      "TW_KEY": "@tw_key",
+      "TW_SECRET": "@tw_secret",
+      "TW_TOKEN": "@tw_token",
+      "TW_TOKEN_SECRET": "@tw_token_secret",
+      "TW_WES_USERNAME": "__WesSouza"
     }
   },
   "env": {
     "IG_USERNAME": "@ig_username",
     "IG_PASSWORD": "@ig_password",
-    "IG_WES_USERNAME": "wes.gif"
+    "IG_WES_USERNAME": "wes.gif",
+    "TW_KEY": "@tw_key",
+    "TW_SECRET": "@tw_secret",
+    "TW_TOKEN": "@tw_token",
+    "TW_TOKEN_SECRET": "@tw_token_secret",
+    "TW_WES_USERNAME": "__WesSouza"
   },
   "routes": [
     {
