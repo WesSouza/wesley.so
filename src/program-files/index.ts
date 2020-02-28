@@ -2,6 +2,7 @@ import { Apps } from '~/src/constants/Apps';
 
 import { Calculator } from './Calculator/Calculator';
 import { Instagram } from './Instagram/Instagram';
+import { InternetExplorer } from './InternetExplorer/InternetExplorer';
 import { Modal } from './Modal/Modal';
 import { Notepad } from './Notepad/Notepad';
 import { Spotify } from './Spotify/Spotify';
@@ -10,6 +11,7 @@ import { Twitter } from './Twitter/Twitter';
 export const ProgramFiles = {
   [Apps.calc]: Calculator,
   [Apps.instagram]: Instagram,
+  [Apps.iexplore]: InternetExplorer,
   [Apps.modal]: Modal,
   [Apps.notepad]: Notepad,
   [Apps.spotify]: Spotify,
