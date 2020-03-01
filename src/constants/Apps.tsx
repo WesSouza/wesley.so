@@ -1,5 +1,6 @@
 export enum Apps {
   calc = 'calc',
+  clippit = 'clippit',
   instagram = 'instagram',
   iexplore = 'iexplore',
   modal = 'modal',
