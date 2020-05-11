@@ -18,7 +18,7 @@ import {
 import { ApplicationWindowProps } from '~/src/system/ApplicationWindow';
 import { HStack, Text, VerticalAlignments, VStack } from '~/src/ui';
 
-function ModalComponent({ window }: ApplicationWindowProps) {
+function RunComponent({ window }: ApplicationWindowProps) {
   const { file: modalId, id } = window;
   const modal = useCollectionItem<ModalType, ModalState>(
     modalStore,
@@ -88,4 +88,4 @@ function ModalComponent({ window }: ApplicationWindowProps) {
   );
 }
 
-export const Modal = memo(ModalComponent);
+export const Run = memo(RunComponent);

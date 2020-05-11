@@ -1,7 +1,7 @@
-import { Apps } from '~/constants/Apps';
-import { Icons } from '~/constants/Icons';
-import { Sounds } from '~/constants/Sounds';
-import { StateManager } from '~/utils/StateManager';
+import { Apps } from '~/src/constants/Apps';
+import { Icons } from '~/src/constants/Icons';
+import { Sounds } from '~/src/constants/Sounds';
+import { StateManager } from '~/src/utils/StateManager';
 
 import { windowClose, windowOpen } from './window';
 
@@ -42,7 +42,7 @@ export function modalAction(id: string, action: string | 'close') {
 
   modal.actionCallback?.call(null, action);
 
-  modalStore.mutate(state => {
+  modalStore.mutate((state) => {
     state.all.delete(id);
   });
 
@@ -54,7 +54,7 @@ export function modalAction(id: string, action: string | 'close') {
 
 export function modalOpen(modal: ModalData) {
   const id = uuid();
-  modalStore.mutate(state => {
+  modalStore.mutate((state) => {
     state.all.set(id, {
       id,
       windowId: null,
@@ -64,7 +64,7 @@ export function modalOpen(modal: ModalData) {
 
   const windowId = windowOpen(Apps.modal, id);
 
-  modalStore.mutate(state => {
+  modalStore.mutate((state) => {
     const modal = state.all.get(id);
     if (modal) {
       modal.windowId = windowId;
